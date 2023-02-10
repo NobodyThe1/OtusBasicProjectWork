@@ -57,7 +57,7 @@ public class EventsTiles extends AbsComponent {
             dateOfEvent = string.replaceAll("[а-я]+", String.format("%d", MonthsData.getDate(monthOfEvent).getNumber()));
             dateOfEvent += " " + LocalDate.now().getYear();
             dateOfEvent = dateOfEvent.charAt(0) + dateOfEvent.substring(1).toLowerCase();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM HH:mm yyyy", Locale.ROOT);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d M HH:mm yyyy", Locale.ROOT);
             LocalDateTime localDateTime = LocalDateTime.parse(dateOfEvent, formatter);
 
             if (localDateTime.equals("Сейчас в эфире")) {
