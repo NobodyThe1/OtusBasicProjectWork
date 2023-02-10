@@ -16,6 +16,9 @@ public class EventsPage extends AbsPage {
     @FindBy (css = ".dod_new-events-dropdown")
     private WebElement eventsDropDown;
 
+    @FindBy (css = ".footer2__container")
+    private WebElement footer;
+
     private String eventSelector = ".dod_new-events-dropdown__list-item[title='%s']";
 
 
@@ -30,10 +33,9 @@ public class EventsPage extends AbsPage {
 
     public void scrollPage() {
         for (int i = 0; i <= 100; i++) {
-            ((JavascriptExecutor)driver).executeScript("document.querySelector('.footer2__container')" +
-                            ".scrollIntoView({behavior: 'smooth'});" +
-                            "document.querySelector('.footer2__container')" +
-                            ".scrollIntoView(false);");
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth'})", footer);
+            js.executeScript("arguments[0].scrollIntoView(false);", footer);
             waiter.waitForCondition(ExpectedConditions
                     .presenceOfAllElementsLocatedBy(By.cssSelector(".dod_new-event-content")));
         }
